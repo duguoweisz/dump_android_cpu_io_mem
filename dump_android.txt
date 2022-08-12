@@ -1,0 +1,72 @@
+*****************************************************************************
+Android 系统级CPU、IO、MEMORY监控
+*****************************************************************************
+1. 系统级CPU监控
+top
+top -m 10 -H
+cat /proc/cpuinfo
+ls -l /dev/cpuset/
+ls -l /dev/cpuctl/
+ls -l /dev/stune/
+dumpsys cpuinfo
+cat /proc/pressure/cpu
+
+2. 系统级文件IO监控
+iotop
+df -h
+du -sh
+fanotify
+cat /proc/uid_io/stats
+dumpsys storaged
+storaged -u
+cat /proc/pressure/io
+
+3. 系统级Memory内存监控
+vmstat
+cat /proc/meminfo
+cat /proc/buddyinfo
+cat /proc/slabinfo
+cat /proc/zoneinfo
+ls -l /dev/memcg/
+cat /proc/pressure/memory
+dumpsys meminfo
+procrank
+
+*****************************************************************************
+Android 进程级CPU、IO、MEMORY监控
+*****************************************************************************
+1. 进程级cpu监控
+cat /proc/pid/cgroup
+cat /proc/pid/sched
+cat /proc/pid/schedstat
+cat /proc/pid/stack
+cat /proc/pid/cpuset
+
+2. 进程级文件IO监控
+cat /proc/pid/io
+strace -p pid
+
+3. 进程级MEMORY内存监控
+dumpsys meminfo pid
+cat /proc/pid/maps
+cat /proc/pid/smaps
+cat /proc/pid/smaps_rollup
+cat /proc/pid/oom_score_adj
+procmem -p pid
+
+4. 系统调用SYSCALL监控
+app监控：
+strace -f -p PID
+
+apk监控：
+ 1. setenforce 0
+    stop
+    start
+2. mkdir -m 777 /data/local/tmp/strace
+3. setprop wrap.com.android.calendar '"logwrapper strace -f -o /data/local/tmp/strace/strace.com.android.calendar.txt"'
+4. start apk normally
+
+zygote监控：
+service zygote /system/bin/strace -o /data/local/tmp/zygote.strace /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
+/system/bin/strace u:object_r:zygote_socket:s0
+BOARD_KERNEL_CMDLINE := ....  androidboot.hardware=sailfish ...  androidboot.selinux=permissive
