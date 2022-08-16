@@ -14,7 +14,7 @@ cat /proc/pressure/cpu
 2. 系统级文件IO监控
 iotop
 df -h
-du -sh
+du -sh(du -h -d 1)
 fanotify
 cat /proc/uid_io/stats
 dumpsys storaged
