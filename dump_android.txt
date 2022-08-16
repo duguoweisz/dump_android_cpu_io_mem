@@ -12,7 +12,7 @@ dumpsys cpuinfo
 cat /proc/pressure/cpu
 
 2. 系统级文件IO监控
-iotop
+iotop(iotop -P -m 10)
 df -h
 du -sh(du -h -d 1)
 fanotify
