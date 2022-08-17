@@ -44,7 +44,7 @@ cat /proc/pid/cpuset
 
 2. 进程级文件IO监控
 cat /proc/pid/io
-strace -f -T -y -p PID 2>&1 | grep xxx
+strace -f -T -y -p PID 2>&1 | grep xxx (注意-c可以进行系统调用count统计,ctrl+c后显示)
 
 3. 进程级MEMORY内存监控
 dumpsys meminfo pid
@@ -56,7 +56,7 @@ procmem -p pid
 
 4. 系统调用SYSCALL监控
 app监控：
-strace -f -T -y -p PID 2>&1 | grep xxx
+strace -f -T -y -p PID 2>&1 | grep xxx (注意-c可以进行系统调用count统计,ctrl+c后显示)
 
 apk监控：
  1. setenforce 0
