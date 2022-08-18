@@ -23,12 +23,13 @@ cat /proc/pressure/io
 
 3. 系统级Memory内存监控
 vmstat
-cat /proc/meminfo
+cat /proc/vmstat--android lmkd的数据来源,主要获取信息判断recleaim情况
+cat /proc/meminfo--android lmkd的数据来源，主要获取剩余内存等信息
 cat /proc/buddyinfo
 cat /proc/slabinfo
-cat /proc/zoneinfo
+cat /proc/zoneinfo--android lmkd的数据来源，主要是判断waterlevel等
 ls -l /dev/memcg/
-cat /proc/pressure/memory
+cat /proc/pressure/memory --android lmkd的psi数据来源,主要判断psi level
 dumpsys meminfo
 procrank
 
