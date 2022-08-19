@@ -42,6 +42,12 @@ cat /proc/pid/sched
 cat /proc/pid/schedstat
 cat /proc/pid/stack
 cat /proc/pid/cpuset
+simpleperf report --sort dso
+simpleperf report --dsos library.so --sort symbol
+simpleperf report --sort tid,comm
+simpleperf report --tids threadID --sort dso
+simpleperf report -g
+https://developer.android.com/ndk/guides/simpleperf
 
 2. 进程级文件IO监控
 cat /proc/pid/io
